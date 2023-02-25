@@ -10,19 +10,10 @@ void PrintArray(string[] arr)
     System.Console.WriteLine("[" + string.Join(", ", arr) + "]");
 }
 
-int FilteredArrayLength(string[] arr)
-{
-    int index = 0;
-    foreach(string element in arr)
-    {
-        if(element.Length <= 3) index++;
-    }
-    return index;
-}
-
 string[] FilteredArray(string[] arr)
 {
-    string[] filteredArray = new string[(FilteredArrayLength(arr))];
+    int filteredArrayLength = (from element in arr where element.Length <= 3 select element).Count();
+    string[] filteredArray = new string[filteredArrayLength];
     int index = 0;
     foreach(string element in arr)
     {
@@ -32,6 +23,10 @@ string[] FilteredArray(string[] arr)
 }
 
 
-string[] array = {"1233", "abc", "2", "???", "0)12", "-g", "gr"};
+string[] array = {"hello", "2", "world", ":-)"};
+// string[] array = {"Russia", "Denmark", "Kazan"};
+// string[] array = {"1234", "1567", "-2", "computer science"};
+System.Console.Write("Изначальный массив: ");
 PrintArray(array);
+System.Console.Write("Отфильтрованный массив: ");
 PrintArray(FilteredArray(array));
